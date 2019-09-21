@@ -8,7 +8,7 @@ var GAP = 50;
 var BAR_WIDTH = 40;
 var HISTOGRAMM_HEIGHT = 150;
 var TEXT_HEIGHT = 250;
-
+ 
 
 var renderCloud = function (ctx, x, y, color) {
 
