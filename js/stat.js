@@ -32,26 +32,25 @@ var getMaxElement = function (arr) {
 
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, 100, 10, 'rgba(0, 0, 0, 0.7)');
-  renderCloud(ctx, 90, 0, '#fff');
-  ctx.fillStyle = 'black';
+  renderCloud(ctx, 90, 0, 'rgb(255, 255, 255)');
+  ctx.fillStyle = 'rgb(0,0,0)';
   ctx.font = '16px PT Mono';
   ctx.fillText('Ура, вы победили!', 150, 20);
   ctx.fillText('Список результатов:', 120, 40);
 
   var x = CLOUD_X + (CLOUD_WIDTH - (BAR_WIDTH * 4 + GAP * 3)) / 2;
-  var i = 0;
   var maxScore = getMaxElement(times);
-  for (i = 0; i < names.length; i++) {
+  for (var i = 0; i < names.length; i++) {
     if (names[i] === 'Вы') {
-      ctx.fillStyle = 'red';
+      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = 'hsl(250, 100%, ' + getRandomNumber(30, 100) + '%)';
+      ctx.fillStyle = 'hsl(250, 100%, ' + getRandomNumber(40, 100) + '%)';
     }
 
     var barHeight = (times[i] / maxScore) * HISTOGRAMM_HEIGHT;
     ctx.fillRect(x, TEXT_HEIGHT - 20, BAR_WIDTH, -barHeight);
-    ctx.fillStyle = 'black';
-    var scoreY = TEXT_HEIGHT - barHeight - 0;
+    ctx.fillStyle = 'rgb(0,0,0)';
+    var scoreY = TEXT_HEIGHT - barHeight - 30;
     ctx.fillText(getRoundInteger(times[i]), x, scoreY);
     ctx.fillText(names[i], x, TEXT_HEIGHT);
     x = (x + BAR_WIDTH + GAP);
