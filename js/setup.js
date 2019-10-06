@@ -56,3 +56,66 @@ for (i = 0; i < wizards.length; i++) {
 similarListElement.appendChild(documentFragment);
 
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
+
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+
+var setupOpen = document.querySelector('.setup-open');
+var setup = document.querySelector('.setup');
+var setupClose = setup.querySelector('.setup-close');
+
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
+var openPopup = function () {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function () {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+setupOpen.addEventListener('click', function () {
+  openPopup();
+});
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener('click', function () {
+  closePopup();
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+
+var setupWizard = document.querySelector('.setup-wizard');
+var wizardCoat = setupWizard.querySelector('.wizard-coat');
+var coatColors = ['255, 158, 44', '241, 43, 107', '146, 100, 161', '56, 159, 117', '215, 210, 55', '0, 0, 0'];
+wizardCoat.addEventListener('click', function () {
+  wizardCoat.style.fill = 'rgb(' + coatColors[getRandomArbitrary(0, coatColors.length)] + ')';
+});
+
+var wizardEyes = setupWizard.querySelector('.wizard-eyes');
+var eyesColors = ['black', 'red', 'blue', 'yellow', 'green'];
+wizardEyes.addEventListener('click', function () {
+  wizardEyes.style.fill = eyesColors[getRandomArbitrary(0, eyesColors.length)];
+});
+
+var fireballWrap = document.querySelector('.setup-fireball-wrap');
+var fireballColors = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+fireballWrap.addEventListener('click', function () {
+  fireballWrap.style.background = fireballColors[getRandomArbitrary(0, fireballColors.length)];
+
+});
